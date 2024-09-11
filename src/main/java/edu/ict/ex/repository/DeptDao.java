@@ -7,10 +7,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import edu.ict.ex.vo.DeptVO;
 
 //DeptRepository
 
+//@Bean = @Component
+//@Bean + Dao의 의미
+@Repository
 public class DeptDao {
 
    public List<DeptVO> deptSelect() {
