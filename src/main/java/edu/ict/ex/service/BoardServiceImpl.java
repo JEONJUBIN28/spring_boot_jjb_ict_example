@@ -27,6 +27,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO get(int bno) {
 		log.info("get()..");
+		
+		BoardVO board = new BoardVO();
+		board.setBid(bno);
+		
+		boardMapper.upHit(board);
 
 		return boardMapper.read(bno);
 	}
@@ -45,12 +50,30 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.insertBoard(board);
 	}
 	
+	/*
+	 * @Override public int modify(String bname, String btitle, String bcontent ,int
+	 * bid) {
+	 * 
+	 * log.info("modify()..");
+	 * 
+	 * return boardMapper.modify(bname, btitle, bcontent, bid); }
+	 */
+	 
 	@Override
 	public int modifyBoard(BoardVO board) {
 		log.info("modifyBoard()..");
 
 		return boardMapper.updateBoard(board);
 	}
+	
+	/*
+	 * @Override public int modify(String bname, String btitle, String bcontent ,int
+	 * bid) {
+	 * 
+	 * log.info("modify()..");
+	 * 
+	 * return boardMapper.modify(bname, btitle, bcontent, bid); }
+	 */
 	
 	//순서있는 기능이 오는 부분 = 비즈니스 로직 = 기능이 있는 로직 = 반드시 서비스 단에서 해결
 	@Override
@@ -61,25 +84,18 @@ public class BoardServiceImpl implements BoardService {
 
 	}
 	
+	@Override
+	public int upHit(BoardVO board) {
+		log.info("upHit()..");
 
-	/*
-	 * @Override public int write(String bname, String btitle, String bcontent) {
-	 * 
-	 * log.info("write()..");
-	 * 
-	 * return boardMapper.write(bname, btitle, bcontent); }
-	 */
+		return boardMapper.upHit(board);
+	}
+	
+
 	
 	
-	/*
-	 * @Override public int modify(String bname, String btitle, String bcontent ,int
-	 * bid) {
-	 * 
-	 * log.info("modify()..");
-	 * 
-	 * return boardMapper.modify(bname, btitle, bcontent, bid); }
-	 */
-	 
+	
+	
 	
 
 }
