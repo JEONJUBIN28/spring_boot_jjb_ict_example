@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import edu.ict.ex.page.Criteria;
+import edu.ict.ex.page.PageVO;
 import edu.ict.ex.service.BoardService;
 import edu.ict.ex.vo.BoardVO;
 import lombok.extern.slf4j.Slf4j;
@@ -122,6 +124,18 @@ public class BoardController {
 		boardService.writeReply(boardVO);
 					
 		return "redirect:/board/list";
+	}
+	
+	@GetMapping("/list2")
+	public String list2(Criteria criteria, Model model) {
+		
+		log.info("list2()..");
+		
+		model.addAttribute("boardList",boardService.getListWithPaging(criteria));
+		int total = boardService.getTotal();
+		model.addAttribute("pageMaker", new PageVO(criteria, total));
+		
+		return "board/list2";
 	}
 																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																														
 
