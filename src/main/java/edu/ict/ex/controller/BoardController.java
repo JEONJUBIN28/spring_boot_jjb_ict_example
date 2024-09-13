@@ -99,7 +99,7 @@ public class BoardController {
 		
 		log.info("modify()..");
 		
-		boardService.writeBoard(boardVO);
+		boardService.modifyBoard(boardVO);
 					
 		return "redirect:/board/list";
 	}
