@@ -14,6 +14,9 @@ public interface BoardService {
 	 int writeBoard(BoardVO board);
 	 int modifyBoard(BoardVO board);
 	 
+	 //댓글
+	 void writeReply(BoardVO board);
+	 
 	/* int write(String bname, String btitle, String bcontent); */
 	 
 	/* int modify(String bname, String btitle, String bcontent, int bid); */

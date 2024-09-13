@@ -25,5 +25,9 @@ public interface BoardMapper {
 	int updateBoard(BoardVO boardVO);
 	/* int modify(String bname, String btitle, String bcontent, int bid); */
 	
+	//댓글 관련
+	public void updateShape(BoardVO boardVO);
+	public void insertReply(BoardVO boardVO);
+	
 }
 
