@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import edu.ict.ex.vo.DeptVO;
@@ -17,6 +20,9 @@ import edu.ict.ex.vo.DeptVO;
 //@Bean + Dao의 의미
 @Repository
 public class DeptDao {
+	
+	@Autowired
+	private DataSource dataSource;
 
    public List<DeptVO> deptSelect() {
 
@@ -37,7 +43,7 @@ public class DeptDao {
     	 
     	 Class.forName(driver);
     	  
-         connetion = DriverManager.getConnection(url, uid, upw);
+         connetion = dataSource.getConnection();
 
          statement = connetion.createStatement();
          rs = statement.executeQuery(sql);
