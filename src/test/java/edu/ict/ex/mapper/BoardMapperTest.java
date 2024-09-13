@@ -43,5 +43,21 @@ class BoardMapperTest {
 		}
 
 	}
+	
+	@Test
+	void testUpdate() {
+		
+		BoardVO board = new BoardVO();
+		board.setBid(63);
+		board.setBname("홍길동");
+		board.setBtitle("홍길동");
+		board.setBcontent("홍길동");
 
+		int count = boardMapper.updateBoard(board);
+
+		System.out.println("업데이트 갯수" + count);
+		
+		System.out.println(boardMapper.read(63));
+
+	}
 }

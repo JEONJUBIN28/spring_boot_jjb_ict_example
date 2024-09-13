@@ -3,6 +3,7 @@ package edu.ict.ex.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import edu.ict.ex.vo.BoardVO;
 
@@ -15,9 +16,14 @@ public interface BoardMapper {
 	//게시판 삭제 == 삭제된 갯수 리턴
 	int delete(int bno);
 	
-	int write(String bname, String btitle, String bcontent);
+	//게시판 insert
+	int insertBoard(@Param("board")BoardVO boardVO);
+	/* int insertBoard(BoardVO boardVO); */
+	/* int write(String bname, String btitle, String bcontent); */
 	
-	int modify(String bname, String btitle, String bcontent, int bid);
+	//게시판 update
+	int updateBoard(BoardVO boardVO);
+	/* int modify(String bname, String btitle, String bcontent, int bid); */
 	
 }
 
