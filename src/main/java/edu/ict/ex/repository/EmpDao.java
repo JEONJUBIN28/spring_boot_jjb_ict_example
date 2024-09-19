@@ -43,23 +43,20 @@ public class EmpDao {
 			statement = connetion.createStatement();
 			rs = statement.executeQuery(sql);
 
-			while (rs.next()) {
-				int deptno = rs.getInt("deptno");
-				int empno = rs.getInt("empno");
-				String ename = rs.getString("ename");
-				String job = rs.getString("job");
-				int mgr = rs.getInt("mgr");
-				Date hiredate = rs.getDate("hiredate");
-				int sal = rs.getInt("sal");
-				int comm = rs.getInt("comm");
-				String hiredate2 = rs.getString("hiredate2");
-
-				EmpVO vo = new EmpVO(deptno, empno, ename, job, mgr, hiredate, sal, comm, hiredate2);
-
-				vos.add(vo);
-
-			}
-
+			/*
+			 * while (rs.next()) { int deptno = rs.getInt("deptno"); int empno =
+			 * rs.getInt("empno"); String ename = rs.getString("ename"); String job =
+			 * rs.getString("job"); int mgr = rs.getInt("mgr"); Date hiredate =
+			 * rs.getDate("hiredate"); int sal = rs.getInt("sal"); int comm =
+			 * rs.getInt("comm"); String hiredate2 = rs.getString("hiredate2");
+			 * 
+			 * EmpVO vo = new EmpVO(deptno, empno, ename, job, mgr, hiredate, sal, comm,
+			 * hiredate2);
+			 * 
+			 * vos.add(vo);
+			 * 
+			 * }
+			 */
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

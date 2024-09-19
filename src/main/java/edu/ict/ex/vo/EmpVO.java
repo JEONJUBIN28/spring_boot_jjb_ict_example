@@ -40,6 +40,8 @@ public class EmpVO {
 	//날짜 input 입력을 위해서
 	private String hiredate2;
 	
+	private String dname; //부서이름
+	private String loc; //지역
 	
 }
 
