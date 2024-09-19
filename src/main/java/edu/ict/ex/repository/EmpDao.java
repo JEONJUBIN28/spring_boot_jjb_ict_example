@@ -51,9 +51,10 @@ public class EmpDao {
 				int mgr = rs.getInt("mgr");
 				Date hiredate = rs.getDate("hiredate");
 				int sal = rs.getInt("sal");
-				String comm = rs.getString("comm");
+				int comm = rs.getInt("comm");
+				String hiredate2 = rs.getString("hiredate2");
 
-				EmpVO vo = new EmpVO(deptno, empno, ename, job, mgr, hiredate, sal, comm);
+				EmpVO vo = new EmpVO(deptno, empno, ename, job, mgr, hiredate, sal, comm, hiredate2);
 
 				vos.add(vo);
 

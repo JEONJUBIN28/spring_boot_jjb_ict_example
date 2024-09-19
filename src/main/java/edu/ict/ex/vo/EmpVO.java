@@ -36,7 +36,9 @@ public class EmpVO {
 	private int mgr;
 	private Date hiredate;
 	private int sal;
-	private String comm;
+	private int comm;
+	//날짜 input 입력을 위해서
+	private String hiredate2;
 	
 	
 }

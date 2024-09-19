@@ -2,6 +2,7 @@ package edu.ict.ex.service;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,13 @@ public class EmpService {
 
 		return empMapper.getList();
 	}
+
+
+	public int insert(EmpVO empVO) {
+		System.out.println("insert()..");
+
+		return empMapper.insert(empVO);
+	}
+
 
 }
