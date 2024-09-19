@@ -126,6 +126,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	//Criteria criteria = new Criteria(); 객채 생성 후 디폴트값을 가져온다.
 	@GetMapping("/list2")
 	public String list2(Criteria criteria, Model model) {
 		
