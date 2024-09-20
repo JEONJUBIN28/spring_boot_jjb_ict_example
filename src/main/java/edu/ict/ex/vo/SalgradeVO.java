@@ -21,7 +21,4 @@ public class SalgradeVO {
 	private int grade;
 	private int losal;
 	private int hisal;
-	
-	private DeptVO depts;
-
 }

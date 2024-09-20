@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.ict.ex.page.Criteria;
 import edu.ict.ex.page.PageVO;
-import edu.ict.ex.service.DeptService;
 import edu.ict.ex.service.EmpService;
 import edu.ict.ex.vo.EmpVO;
 
@@ -20,8 +19,9 @@ public class EmpController {
 	@Autowired
 	private EmpService empService;
 
-	@Autowired
-	private DeptService deptService;
+	/*
+	 * @Autowired private DeptSevice DeptSevice;
+	 */
 
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -32,87 +32,49 @@ public class EmpController {
 
 		return "emp/list";
 	}
-	
-	@GetMapping("/salgrade")
-	public String salgrade(Model model) {
-		System.out.println("salgrade()..");
-		
-		model.addAttribute("empList",empService.getEmpSalgradeList());
-	
-		return "emp/salgrade";
-	}
-	
-	@GetMapping("/list5")
-	public String list5(Model model) {
-		System.out.println("list5()..");
-		
-		model.addAttribute("empList",empService.getEmpOneDeptList());
-	
-		return "emp/list5";
-	}
-	
-	@GetMapping("/list4")
-	public String list4(Model model) {
-		System.out.println("list4()..");
-		
-		model.addAttribute("empDeptList",empService.getDeptEmpList());
-	
-		return "emp/list4";
-	}
-	
-	
-	@GetMapping("/info")
-	public String info(Model model) {
-		System.out.println("info()..");
-		
-		model.addAttribute("empList",empService.getDeptEmpSalgradeList());
-	
-		return "emp/info";
-	}
-	
-	
-	@GetMapping("/list3")
-	public String list3(Model model) {
 
-		System.out.println("list3()..");
+	@GetMapping("/list6")
+	public String list6(Model model) {
 
-		model.addAttribute("empList", empService.getEmpDeptList());
+		System.out.println("list6()..");
 
-		return "emp/list3";
+		model.addAttribute("empList", empService.getEmpSalgrade());
+
+		return "emp/list6";
 	}
 
-	@GetMapping("/insert_view")
-	public String insert_view(Model model) {
-		System.out.println("insert_view()..");
-
-		model.addAttribute("empList", empService.getList());
-		model.addAttribute("deptList", deptService.getList());
-
-		return "/emp/insert";
-	}
-
+	/*
+	 * @GetMapping("/insert_view") public String insert_view(Model model) {
+	 * 
+	 * System.out.println("insert_view()..");
+	 * 
+	 * model.addAttribute("empList", empService.getList());
+	 * model.addAttribute("deptList",DeptSevice.getList());
+	 * 
+	 * 
+	 * return "emp/insert"; }
+	 */
 	@PostMapping("/insert")
 	public String insert(EmpVO empVO) {
+
 		System.out.println("insert()..");
 		System.out.println(empVO);
-		
+
 		empService.insert(empVO);
-		
 
 		return "redirect:/emp/list";
 	}
-	
+
 	@GetMapping("/list2")
 	public String list2(Criteria criteria, Model model) {
 		System.out.println();
-		
-		model.addAttribute("empList",empService.getListWithPaging(criteria));
-		
+
+		model.addAttribute("empList", empService.getListWithPaging(criteria));
+
 		int total = empService.getTotal();
 		model.addAttribute("pageMaker", new PageVO(criteria, total));
-		
+
 		return "emp/list2";
 	}
-	
 
 }
