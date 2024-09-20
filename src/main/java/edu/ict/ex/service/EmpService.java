@@ -9,8 +9,8 @@ import edu.ict.ex.mapper.EmpMapper;
 import edu.ict.ex.page.Criteria;
 import edu.ict.ex.vo.DeptEmpVO;
 import edu.ict.ex.vo.EmpDeptVO;
+import edu.ict.ex.vo.EmpGradeVO;
 import edu.ict.ex.vo.EmpVO;
-import edu.ict.ex.vo.SalgradeVO;
 
 //Commend 계층 = 비즈니스 로직
 @Service
@@ -59,11 +59,15 @@ public class EmpService {
 
 		return empMapper.getEmpOneDeptList();
 	}
+	
+	public List<EmpGradeVO> getEmpSalgradeList() {
 
+		return empMapper.getEmpSalgradeList();
+	}
 
-	public List<SalgradeVO> getDeptSalgradeList() {
+	public List<EmpGradeVO> getDeptEmpSalgradeList() {
 
-		return empMapper.getDeptSalgradeList();
+		return empMapper.getDeptEmpSalgradeList();
 	}
 
 }

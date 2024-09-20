@@ -33,6 +33,15 @@ public class EmpController {
 		return "emp/list";
 	}
 	
+	@GetMapping("/salgrade")
+	public String salgrade(Model model) {
+		System.out.println("salgrade()..");
+		
+		model.addAttribute("empList",empService.getEmpSalgradeList());
+	
+		return "emp/salgrade";
+	}
+	
 	@GetMapping("/list5")
 	public String list5(Model model) {
 		System.out.println("list5()..");
@@ -56,7 +65,7 @@ public class EmpController {
 	public String info(Model model) {
 		System.out.println("info()..");
 		
-		model.addAttribute("deptSalgradeList",empService.getDeptSalgradeList());
+		model.addAttribute("empList",empService.getDeptEmpSalgradeList());
 	
 		return "emp/info";
 	}

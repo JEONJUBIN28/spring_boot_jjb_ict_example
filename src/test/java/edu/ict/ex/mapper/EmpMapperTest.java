@@ -19,15 +19,22 @@ class EmpMapperTest {
    private EmpMapper mapper;
    
    @Test
-   void testGetEmpOneDeptList() {
-      System.out.println(mapper.getEmpOneDeptList());
+   void testGetDeptEmpSalgradeList() {
+      System.out.println(mapper.getDeptEmpSalgradeList());
    }
    
    @Disabled
    @Test
-   void getDeptSalgradeList() {
-      System.out.println(mapper.getDeptSalgradeList());
+   void testGetEmpSalgradeList() {
+      System.out.println(mapper.getEmpSalgradeList());
    }
+   
+   @Disabled
+   @Test
+   void testGetEmpOneDeptList() {
+      System.out.println(mapper.getEmpOneDeptList());
+   }
+   
    
    @Disabled
    @Test

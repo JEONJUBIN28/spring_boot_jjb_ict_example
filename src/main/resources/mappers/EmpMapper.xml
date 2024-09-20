@@ -53,23 +53,11 @@
 		<collection property="empList" resultMap="empMap"></collection>
 	</resultMap>
 
-	<resultMap id="empsalMap" type="SalgradeVO">
-		<result property="garde" column="garde" />
-		<result property="losal" column="losal" />
-		<result property="hisal" column="hisal" />
-		<collection property="empList" resultMap="deptMap"></collection>
-	</resultMap>
 
 	<!-- 절대 resultType 으로 하지 말것 -->
 	<select id="getDeptEmpList" resultMap="deptMap">
        <![CDATA[
              select * from emp, dept where emp.deptno = dept.deptno
-        ]]>
-	</select>
-
-	<select id="getSalgradeEmpList" resultMap="salgradeMap">
-       <![CDATA[
-             SELECT ENAME, SAL, GRADE FROM EMP, SALGRADE WHERE SAL BETWEEN LOSAL AND HISAL
         ]]>
 	</select>
 
@@ -106,6 +94,64 @@
 	<select id="getEmpOneDeptList" resultMap="empDeptMap">
        <![CDATA[
              select * from emp, dept where emp.deptno = dept.deptno
+        ]]>
+	</select>
+	
+	<resultMap id="empGradeMap" type="SalgradeVO">
+		<result property="grade" column="grade" />
+		<result property="losal" column="losal" />
+		<result property="hisal" column="hisal" />
+	</resultMap>
+	
+	<resultMap id="empsalMap" type="EmpGradeVO" >
+       <id property="empno" column="empno"/>
+       <result property="ename" column="ename"/>
+       <result property="job" column="job"/>
+       <result property="mgr" column="mgr"/>
+       <result property="hiredate" column="hiredate"/>
+       <result property="sal" column="sal"/>
+       <result property="comm" column="comm"/>
+       <result property="deptno" column="deptno"/>
+       <association property="salgrade" resultMap="empGradeMap"></association>
+   </resultMap>
+	
+	<select id="getEmpSalgradeList" resultMap="empsalMap">
+       <![CDATA[
+             SELECT * FROM EMP e, SALGRADE s WHERE e.SAL BETWEEN s.LOSAL AND s.HISAL
+        ]]>
+	</select>
+	
+		<resultMap id="deptGradeMap" type="SalgradeVO">
+		<result property="grade" column="grade" />
+		<result property="losal" column="losal" />
+		<result property="hisal" column="hisal" />
+		<collection property="depts" resultMap="deptempMap"></collection>
+	</resultMap>
+	
+	<resultMap id="deptempMap" type="DeptVO">
+		<result property="deptno" column="deptno" />
+		<result property="dname" column="dname" />
+		<result property="loc" column="loc" />		
+	</resultMap>
+	
+	<resultMap id="deptsalMap" type="EmpGradeVO" >
+       <id property="empno" column="empno"/>
+       <result property="ename" column="ename"/>
+       <result property="job" column="job"/>
+       <result property="mgr" column="mgr"/>
+       <result property="hiredate" column="hiredate"/>
+       <result property="sal" column="sal"/>
+       <result property="comm" column="comm"/>
+       <result property="deptno" column="deptno"/>
+       <association property="salgrade" resultMap="deptGradeMap"></association>
+   </resultMap>
+	
+	<select id="getDeptEmpSalgradeList" resultMap="deptsalMap">
+       <![CDATA[
+             SELECT E.ENAME, E.JOB, D.DNAME, E.SAL, S.GRADE
+				FROM EMP E, DEPT D, SALGRADE S
+				WHERE E.DEPTNO=D.DEPTNO
+				AND E.SAL BETWEEN S.LOSAL AND S.HISAL 
         ]]>
 	</select>
 
