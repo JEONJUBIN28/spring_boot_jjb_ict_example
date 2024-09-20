@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import edu.ict.ex.mapper.EmpMapper;
 import edu.ict.ex.page.Criteria;
 import edu.ict.ex.vo.EmpVO;
+import edu.ict.ex.vo.join.EmpDeptSalgradeVO;
 import edu.ict.ex.vo.join.EmpSalgradeVO;
 
 //Commend 계층 = 비즈니스 로직
@@ -45,5 +46,9 @@ public class EmpService {
 
 	public List<EmpSalgradeVO> getEmpSalgrade(){
 		return empMapper.getEmpSalgrade();
+	}
+	
+	public List<EmpDeptSalgradeVO> getDeptEmpSalgrade(){
+		return empMapper.getDeptEmpSalgrade();
 	}
 }

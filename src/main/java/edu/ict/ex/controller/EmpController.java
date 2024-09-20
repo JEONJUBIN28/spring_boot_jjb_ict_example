@@ -42,6 +42,16 @@ public class EmpController {
 
 		return "emp/list6";
 	}
+	
+	@GetMapping("/list7")
+	public String list7(Model model) {
+
+		System.out.println("list7()..");
+
+		model.addAttribute("empList", empService.getDeptEmpSalgrade());
+
+		return "emp/list7";
+	}
 
 	/*
 	 * @GetMapping("/insert_view") public String insert_view(Model model) {
