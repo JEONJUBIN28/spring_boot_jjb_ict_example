@@ -21,7 +21,7 @@
 			<td>sal</td>
 			<td>comm</td>
 			<td>dname(부서이름)</td>
-			<td>loc(부서번호)</td>
+			<td>loc(부서위치)</td>
 		</tr>
 		<c:forEach var="deptEmp" items="${empDeptList}">
 		 	<c:forEach var="emp" items="${deptEmp.empList}">
