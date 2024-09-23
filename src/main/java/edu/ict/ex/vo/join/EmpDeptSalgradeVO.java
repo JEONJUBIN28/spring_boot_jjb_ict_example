@@ -1,4 +1,4 @@
-package edu.ict.ex.vo.join;
+	package edu.ict.ex.vo.join;
 
 import edu.ict.ex.vo.DeptVO;
 import edu.ict.ex.vo.EmpVO;
@@ -19,5 +19,9 @@ public class EmpDeptSalgradeVO {
 	private EmpVO emp;
 	private DeptVO dept;
 	private SalgradeVO salgrade;
+	
+	public int getRandImgNum() {
+		return (int) (Math.random() * 6) + 1;
+	}
 }
 
