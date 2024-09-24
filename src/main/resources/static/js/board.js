@@ -78,6 +78,26 @@ let boardService = function() {
 
 		});
 	}
+	
+	function update(board) {
+
+		$.ajax({
+			type: "PUT",
+			url: "/boards/",
+			contentType: 'application/json; charset=utf-8',
+			data: JSON.stringify(board),
+			success: function(result) {
+
+				if (result == "SUCCESS")
+					console.log(result);
+
+			},
+			error: function(e) {
+				console.log(e);
+			}
+
+		});
+	}
 
 
 
@@ -85,6 +105,7 @@ let boardService = function() {
 		list: list,
 		get: get,
 		add: add,
-		del : del
+		del : del,
+		update : update
 	}
 };

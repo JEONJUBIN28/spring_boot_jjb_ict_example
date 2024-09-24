@@ -18,14 +18,15 @@
 
 		let boardObj = {
 			bname : "아햏햏",
-			bcontent : "아햏햏하오",
+			bcontent : "수정",
 			btitle : "음매에 ~~~"
 		}
 
 		//board.add(boardObj);
 		
-		board.del(1086);
-		board.del(1080);
+		//board.del(1086);
+		//board.del(1080);
+		board.update(boardObj); //type : PUT
 		
 
 	});

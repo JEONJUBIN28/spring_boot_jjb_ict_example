@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -92,51 +93,73 @@ public class RestBoardController {
 //
 //		return words;
 //	}
-	
+
 	@PostMapping("/")
 	public ResponseEntity<String> writ(@RequestBody BoardVO board) {
-		
+
 		log.info("write..");
 		log.info("board" + board);
 
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			boardService.writeBoard(board);
-			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
-			
+			entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
-			
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
 		}
 
 		return entity;
 	}
-	
+
 	@DeleteMapping("/{bid}")
 	public ResponseEntity<String> delete(BoardVO board) {
-		
+
 		log.info("delete..");
 		log.info("board" + board);
 
 		ResponseEntity<String> entity = null;
-		
+
 		try {
 			int rn = boardService.remove(board.getBid());
-			//삭제가 성공하면 삭제된 갯수 출력
+			// 삭제가 성공하면 삭제된 갯수 출력
 			log.info("delete 넘어온 숫자:::::" + rn);
-			
-			entity = new ResponseEntity<String>(String.valueOf(rn),HttpStatus.OK);
-			
+
+			entity = new ResponseEntity<String>(String.valueOf(rn), HttpStatus.OK);
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			//삭제가 실패하면 삭제된 갯수 출력
-			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
-			
+			// 삭제가 실패하면 삭제된 갯수 출력
+			entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
 		}
 
 		return entity;
+	}
+
+	@PutMapping("/") 
+	public ResponseEntity<String> modify(@RequestBody BoardVO board ){
+		
+		log.info("modify..");
+		log.info("board" + board);
+		
+		ResponseEntity<String> entity = null;
+		
+		try {
+			
+			int rn = boardService.modifyBoard(board);
+			
+			entity = new ResponseEntity<String>(String.valueOf(rn), HttpStatus.OK);	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);	
+		}
+						
+		return  entity;
 	}
 
 }
