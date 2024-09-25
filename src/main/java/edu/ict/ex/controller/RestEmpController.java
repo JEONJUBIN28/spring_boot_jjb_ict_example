@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.ict.ex.service.DeptService;
 import edu.ict.ex.service.EmpService;
 import edu.ict.ex.vo.EmpVO;
 
@@ -17,12 +16,7 @@ public class RestEmpController {
 
 	@Autowired
 	private EmpService empService;
-
-	
-	@Autowired 
-	private DeptService DeptSevice;
 	 
-
 	@GetMapping("/list")
 	public List<EmpVO> list() {
 
@@ -31,7 +25,17 @@ public class RestEmpController {
 
 		return empService.getList();
 	}
-
+	
+	@GetMapping("/delete")
+	public String delete(EmpVO empVO) {
+		
+		System.out.println("delete()..");
+		
+		int empno = empVO.getEmpno();
+		empService.delete(empno);
+				
+		return "redirect:/emps/list";
+	}
 	
 
 }

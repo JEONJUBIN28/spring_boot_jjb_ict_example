@@ -51,4 +51,8 @@ public class EmpService {
 	public List<EmpDeptSalgradeVO> getDeptEmpSalgrade(){
 		return empMapper.getDeptEmpSalgrade();
 	}
+
+	public void delete(int empno) {
+		
+	}
 }

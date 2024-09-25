@@ -100,5 +100,11 @@
 				AND E.SAL BETWEEN S.LOSAL AND S.HISAL
         ]]>
 	</select>
+	
+	<delete id="delete" >
+        <![CDATA[
+        	delete from emp where empno = #{empno}
+        ]]>
+	</delete>
 
 </mapper>

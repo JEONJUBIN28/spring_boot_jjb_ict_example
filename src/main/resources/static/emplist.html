@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>emp 리스트</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/board.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function (){
+      
+         $.ajax({
+             type : "GET",
+             url : "/emps/list",
+             cashe:false,
+             success: function (result) {       
+                    console.log(result); 
+                    
+                 
+                    let htmls="";
+             	   
+             	   $("#list-table").html('');
+             	   
+             	
+             	   $("<tr>" , {
+             	      html : "<td>" + "사원번호" + "</td>"+  // 컬럼명들
+             	             "<td>" + "부서번호" + "</td>"+
+             	             "<td>" + "부서이름" + "</td>"+
+             	             "<td>" + "업종" + "</td>"+
+             	             "<td>" + "매니져" + "</td>"+            
+             	             "<td>" + "입사일자" + "</td>"+
+             	             "<td>" + "급여" + "</td>"+
+             	           	 "<td>" + "커미션" + "</td>"+
+             	             "<td>" + "삭제" + "</td>"
+             	   }).appendTo("#list-table") // 이것을 테이블에 붙임
+             	    
+             	      
+             	      $(result).each(function(){
+             	         htmls += '<tr>';
+             	         htmls += '<td>'+ this.deptno + '</td>'; 
+             	         htmls += '<td>'+ this.empno + '</td>';
+             	         htmls += '<td>'+ this.ename + '</td>';
+             	         htmls += '<td>'+ this.job + '</td>';
+             	         htmls += '<td>'+ this.mgr + '</td>'; 
+             	         htmls += '<td>'+ this.hiredate + '</td>';
+             	         htmls += '<td>'+ this.sal + '</td>';
+             	         htmls += '<td>'+ this.comm + '</td>';
+             	         htmls += '<td>'+ '<input id=' + this.bid + " type='button' class='btn_delete' value='삭제'>" + '</td>';
+             	         htmls += '</tr>';         
+             	         
+             	      }); //each end
+             	   
+             	   
+             	   $('#list-table').append(htmls);
+                  
+             },
+             error: function (e) {
+                 console.log(e);
+             }
+         })
+          
+      });
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+   
+   $(document).on("click","#list-table .btn_delete", function(){
+      console.log($(this).attr("empno"))
+      
+      $(this).parent().parent().remove();
+      
+      let emps = empService();
+      emps.del($(this).attr("empno"));
+      
+   });
+   
+});
+</script>
+
+
+
+</head>
+
+<body>
+	<h1>emp 리스트</h1>
+
+	<table id="list-table" width="500" cellpadding="0" cellspacing="0"
+		border="1">
+	</table>
+
+
+</body>
+</html>
