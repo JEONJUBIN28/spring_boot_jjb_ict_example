@@ -1,12 +1,14 @@
 package edu.ict.ex.mapper;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import edu.ict.ex.vo.UserVO;
+import edu.ict.ex.page.Criteria;
+import edu.ict.ex.vo.BoardVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -14,21 +16,65 @@ import lombok.extern.slf4j.Slf4j;
 class BoardMapperTest {
 
 	@Autowired
-	private UserMapper userMapper;
+	private BoardMapper boardMapper;
+
+	@Disabled
+	@Test
+	void testGetList() {
+		System.out.println(boardMapper.getList());
+
+		for (BoardVO vo : boardMapper.getList()) {
+			System.out.println(vo);
+		}
+	}
+
+	@Test
+	void testRead() {
+		System.out.println(boardMapper.read(1));
+
+	}
+
+	@Test
+	void testdelete() {
+
+		int count = boardMapper.delete(36);
+
+		System.out.println("삭제된 갯수" + count);
+
+		if (boardMapper.read(36) == null) {
+			System.out.println("제대로 삭제되었음");
+		}
+
+	}
 	
 	@Test
-	void testUserMapper() {
-		assertNotNull(userMapper);
-	} 
+	void testUpdate() {
+		
+		BoardVO board = new BoardVO();
+		board.setBid(63);
+		board.setBname("홍길동");
+		board.setBtitle("홍길동");
+		board.setBcontent("홍길동");
+
+		int count = boardMapper.updateBoard(board);
+
+		System.out.println("업데이트 갯수" + count);
+		
+		System.out.println(boardMapper.read(63));
+
+	}
 	
 	@Test
-	void testGetUser() {
-		UserVO user = userMapper.getUser("admin");
-		assertNotNull(user);
+	void getListWithPaging() {
 		
-		System.out.println(user);
+		Criteria criteria = new Criteria();
 		
-	} 
-	
+		criteria.setAmount(10);
+		criteria.setPageNum(3);
+		
+		List<BoardVO>list = boardMapper.getListWithPaging(criteria);
+		System.out.println(list);
+
+	}
 	
 }
