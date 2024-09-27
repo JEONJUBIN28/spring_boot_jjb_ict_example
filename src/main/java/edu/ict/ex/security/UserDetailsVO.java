@@ -9,6 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import edu.ict.ex.vo.AuthVO;
+import edu.ict.ex.vo.CartVO;
 import edu.ict.ex.vo.UserVO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -22,10 +23,24 @@ public class UserDetailsVO implements UserDetails{
 	private String password;
 	private List<GrantedAuthority> authorities;
 	
+	private CartVO cart;
+	
 	public UserDetailsVO(UserVO user) {
 		this.username = user.getUsername();
 		this.setPassword(user.getPassword());
 		this.setAuthorities(user);
+	}
+	
+	public UserDetailsVO(UserVO user, CartVO cart) {
+		this.username = user.getUsername();
+		this.setPassword(user.getPassword());
+		this.setAuthorities(user);
+		
+		this.cart = cart;
+	}
+	
+	public CartVO getCart() {
+		return cart;
 	}
 	
 	public void setAuthorities(UserVO userVO) {

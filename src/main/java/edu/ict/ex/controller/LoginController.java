@@ -16,9 +16,9 @@ public class LoginController {
 	 */
 	
 	@GetMapping("/login")
-	public String login2(Model model) {
+	public String login(Model model) {
 		log.info("login()..");
-		return "login/login2";
+		return "login/login";
 	}
 
 
