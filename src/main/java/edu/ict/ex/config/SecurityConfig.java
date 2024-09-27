@@ -1,5 +1,6 @@
 package edu.ict.ex.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,28 +11,21 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import edu.ict.ex.security.CustomUserDetailsService;
+
 @Configuration // @Component + 설정
 @EnableWebSecurity // 필터 등록 = 시큐리티 설정 파일이다 라고 알려주는 역활
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Autowired
+	private CustomUserDetailsService  customUserDetailsService;
 
 	/* 정적리소스 폴더처리 */
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 
 		// web.ignoring().regexMatchers(PathRequest.toStaticResources().atCommonLocations());
-		web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/lib/**"); // 해당 폴더 접근은 막지 말라는 명령
-	}
-
-	// 테스트용 유저 등록 = 인메모리 방식
-	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		auth.inMemoryAuthentication()
-		.withUser("user").password("{noop}user").roles("USER")
-		.and()
-		.withUser("admin").password("{noop}admin").roles("ADMIN")
-		.and()
-		.withUser("manager").password("{noop}manager").roles("MANAGER");
+		// web.ignoring().antMatchers("/css/**", "/js/**", "/images/**", "/lib/**"); // 해당 폴더 접근은 막지 말라는 명령
 	}
 
 	// 권한 설정
@@ -54,6 +48,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/");
 		      
 		}
+	
+	// 테스트용 유저 등록 = 인메모리 방식
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+//		auth.inMemoryAuthentication()
+//		.withUser("user").password("{noop}user").roles("USER")
+//		.and()
+//		.withUser("admin").password("{noop}admin").roles("ADMIN")
+//		.and()
+//		.withUser("manager").password("{noop}manager").roles("MANAGER");
+		
+		auth.userDetailsService(customUserDetailsService)
+			.passwordEncoder(passwordEncoder());
+	}
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
