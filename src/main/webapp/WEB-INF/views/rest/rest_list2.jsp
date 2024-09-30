@@ -69,7 +69,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 $(document).ready(function(){
    
-   $(document).on("click","#list-table .btn_delete", function(){
+   $(document).on("click","#list-table.btn_delete", function(){
       console.log($(this).attr("id"))
       
       $(this).parent().parent().remove();
